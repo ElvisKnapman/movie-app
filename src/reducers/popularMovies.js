@@ -1,7 +1,7 @@
 import {
-  FETCH_TODAYS_TRENDING_MOVIES_START,
-  FETCH_TODAYS_TRENDING_MOVIES_SUCCESS,
-  FETCH_TODAYS_TRENDING_MOVIES_FAILURE,
+  FETCH_POPULAR_MOVIES_START,
+  FETCH_POPULAR_MOVIES_SUCCESS,
+  FETCH_POPULAR_MOVIES_FAILURE,
 } from '../actionTypes';
 
 const initialState = {
@@ -10,23 +10,23 @@ const initialState = {
   movies: [],
 };
 
-const todaysTrendingMovies = (state = initialState, action) => {
+const popularMovies = (state = initialState, action) => {
   switch (action.type) {
-    case FETCH_TODAYS_TRENDING_MOVIES_START:
+    case FETCH_POPULAR_MOVIES_START:
       return {
         ...state,
         isLoading: true,
         error: null,
       };
 
-    case FETCH_TODAYS_TRENDING_MOVIES_SUCCESS:
+    case FETCH_POPULAR_MOVIES_SUCCESS:
       return {
         ...state,
         isLoading: false,
         movies: action.payload,
       };
 
-    case FETCH_TODAYS_TRENDING_MOVIES_FAILURE:
+    case FETCH_POPULAR_MOVIES_FAILURE:
       return {
         ...state,
         isLoading: false,
@@ -38,4 +38,4 @@ const todaysTrendingMovies = (state = initialState, action) => {
   }
 };
 
-export default todaysTrendingMovies;
+export default popularMovies;
