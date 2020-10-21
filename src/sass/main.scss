@@ -1,0 +1,21 @@
+.trending_movies_container {
+  display: flex;
+  flex-flow: row wrap;
+  max-width: 80%;
+  margin: 3rem auto;
+  width: 100%;
+  padding: 2.2rem;
+  border-radius: 4px;
+  background-color: rgb(74, 108, 149);
+  justify-content: space-between;
+
+  .movie_card {
+    color: $white;
+    width: 23%;
+    border: 1px solid $white;
+    padding: 2rem;
+    margin-bottom: 2rem;
+    border-radius: 4px;
+    background-color: rgb(63, 90, 123);
+  }
+}
