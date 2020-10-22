@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useMemo } from 'react';
 import { connect } from 'react-redux';
 
 // action creator(s)
@@ -12,19 +12,17 @@ const PopularMovieContainer = (props) => {
   useEffect(() => {
     // fetch popular movies on component mount
     popularMovies();
-  }, []);
+  }, [popularMovies]);
 
   return (
     <div>
-      <h1>React Trending Movies Container</h1>
-      <button onClick={props.popularMovies}>
-        Click to get the trending movies
-      </button>
-      {props.isLoading ? <p>Loading...</p> : null}
-      <div className="trending_movies_container">
-        <h2>Today's Trending Movies</h2>
+      <div className="popular_movies_container">
+        {isLoading ? (
+          <p style={{ fontSize: '4rem', color: '#fff' }}>Loading...</p>
+        ) : null}
+        <h2 className="popular_movies_title">Popular Movies</h2>
         <div className="movie_card_container">
-          {props.popularMoviesList.map((movie) => (
+          {popularMoviesList.map((movie) => (
             <MovieCard movie={movie} key={movie.id} />
           ))}
         </div>
