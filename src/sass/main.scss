@@ -1,11 +1,48 @@
-.popular_movies_container {
-  max-width: 80%;
-  margin: 3rem auto;
+// home page
+.inner_page_container {
+  width: 80%;
+  margin: 0 auto;
+}
+
+// search bar
+.search_bar_container {
+  @include container_base;
+  max-width: 100%;
+  display: inline-block;
+  margin-bottom: 0;
+  position: relative;
+  transition: width 500ms ease-in-out;
+}
+
+.search_icon {
+  position: absolute;
+  top: 2.7rem;
+  left: 3.5rem;
+  font-size: 4rem;
+  color: $white;
+  cursor: pointer;
+}
+
+.search_bar_input {
+  max-width: 100%;
   width: 100%;
-  padding: 4rem;
+  padding: 1.3rem 1.3rem 1.3rem 6rem;
+  font-size: 2.2rem;
+  color: $white;
+  background-color: $dark-blue;
   border-radius: $border-radius;
-  background-color: $light-blue;
-  box-shadow: 0 0 20px rgba(0, 0, 0, 0.4);
+  border: none;
+  outline: none;
+  transition: width 500ms ease-in-out;
+}
+
+.search_movies_title {
+  @include container-title;
+}
+
+// popular movie styles
+.popular_movies_container {
+  @include container_base;
 
   .movie_card_container {
     width: 100%;
@@ -46,13 +83,5 @@
 }
 
 .popular_movies_title {
-  font-size: 2.2rem;
-  background-color: $dark-blue;
-  color: $white;
-  padding: 1.2rem 2rem;
-  border-radius: $border-radius;
-  margin-bottom: 2rem;
-  text-transform: uppercase;
-  letter-spacing: 4px;
-  font-weight: 400;
+  @include container-title;
 }
