@@ -1,0 +1,21 @@
+@mixin container_base {
+  max-width: 100%;
+  margin: 3rem auto;
+  width: 100%;
+  padding: $container-padding;
+  border-radius: $border-radius;
+  background-color: $light-blue;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.4);
+}
+
+@mixin container-title {
+  font-size: 2.2rem;
+  background-color: $dark-blue;
+  color: $white;
+  padding: 1.5rem 2rem;
+  border-radius: $border-radius;
+  margin-bottom: 2rem;
+  text-transform: uppercase;
+  letter-spacing: 4px;
+  font-weight: 400;
+}
