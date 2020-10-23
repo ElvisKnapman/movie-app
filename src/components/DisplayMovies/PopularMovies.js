@@ -5,22 +5,28 @@ import { connect } from 'react-redux';
 import { popularMovies } from '../../redux/actionCreators/popularMovies';
 
 // components
+import LoadingSpinner from '../LoadingSpinner/LoadingSpinner';
 import MovieCard from '../MovieCard/MovieCard';
 
-const PopularMovieContainer = (props) => {
+const PopularMovies = (props) => {
   const { popularMovies, popularMoviesList, isLoading } = props;
   useEffect(() => {
     // fetch popular movies on component mount
     popularMovies();
   }, [popularMovies]);
 
+  if (isLoading) {
+    return (
+      <div>
+        <LoadingSpinner />
+      </div>
+    );
+  }
+
   return (
     <div>
-      <div className="popular_movies_container">
-        {isLoading ? (
-          <p style={{ fontSize: '4rem', color: '#fff' }}>Loading...</p>
-        ) : null}
-        <h2 className="popular_movies_title">Popular Movies</h2>
+      <div className="display_movies_container">
+        <h2 className="display_movies_title">Popular Movies</h2>
         <div className="movie_card_container">
           {popularMoviesList.map((movie) => (
             <MovieCard movie={movie} key={movie.id} />
@@ -39,6 +45,4 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default connect(mapStateToProps, { popularMovies })(
-  PopularMovieContainer
-);
+export default connect(mapStateToProps, { popularMovies })(PopularMovies);
