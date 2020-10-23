@@ -2,7 +2,7 @@ import React, { useEffect, useMemo } from 'react';
 import { connect } from 'react-redux';
 
 // action creator(s)
-import { popularMovies } from '../../actionCreators/popularMovies';
+import { popularMovies } from '../../redux/actionCreators/popularMovies';
 
 // components
 import MovieCard from '../MovieCard/MovieCard';
