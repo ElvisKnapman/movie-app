@@ -3,9 +3,17 @@ import { IoMdSearch as SearchIcon } from 'react-icons/io';
 
 import { connect } from 'react-redux';
 
+// action creators
 import { searchMovies } from '../../redux/actionCreators/searchMovies';
+import {
+  showPopularMovies,
+  showHighestRatedMovies,
+  showTrendingMovies,
+} from '../../redux/actionCreators/visibilityFilter';
 
 const SearchBar = (props) => {
+  // destructure state from store
+  const { showPopular, showHighestRated, showTrending } = props;
   const [searchText, setSearchText] = useState('');
   const [isHover, setIsHover] = useState(false);
 
@@ -24,6 +32,7 @@ const SearchBar = (props) => {
     setSearchText(e.target.value);
   };
   console.log('search text', searchText);
+  console.log('props', true);
 
   return (
     <div className="search_bar_container">
@@ -44,17 +53,49 @@ const SearchBar = (props) => {
       </div>
       <div className="filter_container">
         <div className="filter_option_container">
-          <span className="filter_option">Popular</span>
+          <span
+            className={`filter_option ${showPopular ? 'active' : ''}`}
+            onClick={props.showPopularMovies}>
+            Popular
+          </span>
         </div>
         <div className="filter_option_container">
-          <span className="filter_option">Highest Rated</span>
+          <span
+            className={`filter_option ${showHighestRated ? 'active' : ''}`}
+            onClick={props.showHighestRatedMovies}>
+            Top Rated
+          </span>
         </div>
         <div className="filter_option_container">
-          <span className="filter_option">Trending</span>
+          <span
+            className={`filter_option ${showTrending ? 'active' : ''}`}
+            onClick={props.showTrendingMovies}>
+            Trending
+          </span>
         </div>
       </div>
     </div>
   );
 };
 
-export default connect(null, { searchMovies })(SearchBar);
+const mapStateToProps = (state) => {
+  return {
+    showPopular: state.visibilityFilter.showPopular,
+    showHighestRated: state.visibilityFilter.showHighestRated,
+    showTrending: state.visibilityFilter.showTrending,
+  };
+};
+
+const mapDispatchToProps = {
+  searchMovies,
+  showPopularMovies,
+  showHighestRatedMovies,
+  showTrendingMovies,
+};
+
+export default connect(mapStateToProps, {
+  searchMovies,
+  showPopularMovies,
+  showHighestRatedMovies,
+  showTrendingMovies,
+})(SearchBar);
