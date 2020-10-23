@@ -4,20 +4,64 @@
   margin: 0 auto;
 }
 
+// component container
+.component_container {
+  @include container-base;
+}
+
 // search bar
 .search_bar_container {
-  @include container_base;
   max-width: 100%;
-  display: inline-block;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+  align-items: center;
   margin-bottom: 0;
   position: relative;
   transition: width 500ms ease-in-out;
+  // border: 4px solid black;
+
+  .search_bar {
+    max-width: 50rem;
+    min-width: 40rem;
+    width: 100%;
+    margin-right: 5rem;
+  }
+}
+.filter_container {
+  // border: 4px solid black;
+  display: flex;
+}
+
+.filter_option_container {
+  // border: 1px solid black;
+  padding: 1rem;
+  &:not(:last-child) {
+    // border-right: 1px solid $dark-blue;
+  }
+  &:last-child {
+    padding-right: 0.8rem;
+  }
+}
+
+.filter_option {
+  font-size: 1.6rem;
+  color: $white;
+  text-transform: uppercase;
+  font-weight: 600;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+}
+.active {
+  transition: background 300ms ease-in-out;
+  background-color: $dark-blue;
+  border-radius: $border-radius;
 }
 
 .search_icon {
   position: absolute;
-  top: 2.7rem;
-  left: 3.5rem;
+  top: 0.7rem;
+  left: 1.7rem;
   font-size: 4rem;
   color: $white;
   cursor: pointer;
@@ -34,6 +78,7 @@
   border: none;
   outline: none;
   transition: width 500ms ease-in-out;
+  // border: 4px solid black;
 }
 
 .search_movies_title {
@@ -41,9 +86,8 @@
 }
 
 // popular movie styles
-.popular_movies_container {
-  @include container_base;
-
+.display_movies_container {
+  animation: fadeIn 800ms ease-in;
   .movie_card_container {
     width: 100%;
     display: grid;
@@ -56,7 +100,6 @@
     height: auto;
     border-radius: $border-radius;
     box-shadow: 0 1px 10px rgba(0, 0, 0, 0.3);
-    animation: fadeIn 800ms ease-in;
   }
 
   &_title {
@@ -82,6 +125,20 @@
   }
 }
 
-.popular_movies_title {
+.display_movies_title {
   @include container-title;
+}
+
+// loading spinner
+
+.loading_spinner_container {
+  width: 100%;
+  margin: 2rem;
+  text-align: center;
+}
+
+.loading_spinner {
+  color: $dark-blue;
+  font-size: 2rem;
+  margin: 0 auto;
 }
