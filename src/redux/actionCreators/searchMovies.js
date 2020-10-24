@@ -4,6 +4,7 @@ import {
   SEARCH_MOVIES_START,
   SEARCH_MOVIES_SUCCESS,
   SEARCH_MOVIES_FAILURE,
+  SET_VISIBILITY_FILTER_SEARCHED,
 } from '../actionTypes';
 
 export const searchMovies = (searchString) => async (dispatch) => {
@@ -14,7 +15,12 @@ export const searchMovies = (searchString) => async (dispatch) => {
       `https://api.themoviedb.org/3/search/movie?api_key=9bf58527f8639b438523290ccf8faf71&language=en-US&page=1&include_adult=false&query=${searchString}`
     );
     console.log('the search results for the movie term', result);
-    dispatch({ type: SEARCH_MOVIES_SUCCESS, payload: result.data.results });
+    await dispatch({
+      type: SEARCH_MOVIES_SUCCESS,
+      payload: result.data.results,
+    });
+    // set the visibility to show the searched results
+    dispatch({ type: SET_VISIBILITY_FILTER_SEARCHED });
   } catch (err) {
     dispatch({
       type: SEARCH_MOVIES_FAILURE,
