@@ -15,9 +15,8 @@ export const topRatedMovies = () => async (dispatch) => {
     );
     const movies = result.data.results;
     // send the movies to the reducer if successful
-    setTimeout(() => {
-      dispatch({ type: FETCH_TOP_RATED_MOVIES_SUCCESS, payload: movies });
-    }, 3000);
+    dispatch({ type: FETCH_TOP_RATED_MOVIES_SUCCESS, payload: movies });
+
     console.log('top rated movies', movies);
   } catch (err) {
     dispatch({

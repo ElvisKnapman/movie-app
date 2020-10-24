@@ -14,10 +14,12 @@ export const popularMovies = () => async (dispatch) => {
       'https://api.themoviedb.org/3/movie/popular?api_key=9bf58527f8639b438523290ccf8faf71'
     );
     // array of movies is nested in object (in data.results)
-    dispatch({
-      type: FETCH_POPULAR_MOVIES_SUCCESS,
-      payload: result.data.results,
-    });
+    setTimeout(() => {
+      dispatch({
+        type: FETCH_POPULAR_MOVIES_SUCCESS,
+        payload: result.data.results,
+      });
+    }, 1000);
   } catch (error) {
     dispatch({
       type: FETCH_POPULAR_MOVIES_FAILURE,
