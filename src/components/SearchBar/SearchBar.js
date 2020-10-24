@@ -4,16 +4,24 @@ import { IoMdSearch as SearchIcon } from 'react-icons/io';
 import { connect } from 'react-redux';
 
 // action creators
-import { searchMovies } from '../../redux/actionCreators/searchMovies';
+import { searchMovies as searchMoviesAction } from '../../redux/actionCreators/searchMovies';
+// visibility filters actions
 import {
   showPopularMovies,
-  showHighestRatedMovies,
+  showTopRatedMovies,
   showTrendingMovies,
+  showSearchedMovies,
 } from '../../redux/actionCreators/visibilityFilter';
 
 const SearchBar = (props) => {
   // destructure state from store
-  const { showPopular, showHighestRated, showTrending } = props;
+  const {
+    searchMoviesAction,
+    showSearchedMovies,
+    showPopular,
+    showTopRated,
+    showTrending,
+  } = props;
   const [searchText, setSearchText] = useState('');
   const [isHover, setIsHover] = useState(false);
 
@@ -24,7 +32,8 @@ const SearchBar = (props) => {
       const encodedString = encodeURI(searchText);
       console.log('in the useEffect', encodedString);
       console.log('search bar props', props);
-      props.searchMovies(encodedString);
+      // dispatch action to fetch movies based on search string
+      searchMoviesAction(encodedString);
     }
   }, [searchText]);
 
@@ -39,7 +48,6 @@ const SearchBar = (props) => {
       <div className="search_bar">
         <input
           className="search_bar_input"
-          style={isHover ? { width: '100%' } : { width: '1rem' }}
           name="movie_name"
           type="text"
           onChange={handleChange}
@@ -61,8 +69,8 @@ const SearchBar = (props) => {
         </div>
         <div className="filter_option_container">
           <span
-            className={`filter_option ${showHighestRated ? 'active' : ''}`}
-            onClick={props.showHighestRatedMovies}>
+            className={`filter_option ${showTopRated ? 'active' : ''}`}
+            onClick={props.showTopRatedMovies}>
             Top Rated
           </span>
         </div>
@@ -81,21 +89,17 @@ const SearchBar = (props) => {
 const mapStateToProps = (state) => {
   return {
     showPopular: state.visibilityFilter.showPopular,
-    showHighestRated: state.visibilityFilter.showHighestRated,
+    showTopRated: state.visibilityFilter.showTopRated,
     showTrending: state.visibilityFilter.showTrending,
   };
 };
 
 const mapDispatchToProps = {
-  searchMovies,
+  showSearchedMovies,
   showPopularMovies,
-  showHighestRatedMovies,
+  showTopRatedMovies,
   showTrendingMovies,
+  searchMoviesAction,
 };
 
-export default connect(mapStateToProps, {
-  searchMovies,
-  showPopularMovies,
-  showHighestRatedMovies,
-  showTrendingMovies,
-})(SearchBar);
+export default connect(mapStateToProps, mapDispatchToProps)(SearchBar);
