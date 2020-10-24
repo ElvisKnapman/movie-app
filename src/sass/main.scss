@@ -97,18 +97,29 @@
   @media (max-width: $tablet) {
     justify-content: center;
   }
+
+  @media (max-width: $extra-small-phone) {
+    display: block;
+  }
 }
 
 .filter_option_container {
-  // border: 1px solid black;
-  // padding: 1rem;
   &:not(:last-child) {
     margin-right: 2rem;
+
+    @media (max-width: $extra-small-phone) {
+      margin-right: 0;
+    }
   }
 
   @media (max-width: $large-screen) {
     margin-top: 3rem;
     text-align: right;
+  }
+
+  @media (max-width: $extra-small-phone) {
+    margin-right: 0;
+    text-align: left;
   }
 }
 
