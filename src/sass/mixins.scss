@@ -19,3 +19,7 @@
   letter-spacing: 4px;
   font-weight: 400;
 }
+
+@mixin container-title-tablet {
+  font-size: 1.6rem;
+}
