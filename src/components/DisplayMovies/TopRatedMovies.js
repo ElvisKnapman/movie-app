@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 
 // action creator(s)
@@ -7,13 +7,18 @@ import { topRatedMovies as topRatedMoviesAction } from '../../redux/actionCreato
 // components
 import LoadingSpinner from '../LoadingSpinner/LoadingSpinner';
 import MovieCard from '../MovieCard/MovieCard';
+import LoadMoreMoviesButton from '../LoadMoreMoviesButton/LoadMoreMoviesButton';
 
 const TopRatedMovies = (props) => {
   const { topRatedMoviesAction, topRatedMoviesList, isLoading } = props;
+
+  // current page of movie results
+  const [currentPage, setCurrentPage] = useState(1);
+
   useEffect(() => {
-    // fetch top rated movies on component mount
-    topRatedMoviesAction();
-  }, [topRatedMoviesAction]);
+    // fetch top rated movies on component mount and when page number changes to load more movies -- pass page number in
+    topRatedMoviesAction(currentPage);
+  }, [topRatedMoviesAction, currentPage]);
 
   console.log('top rated movies', topRatedMoviesList);
 
@@ -34,6 +39,10 @@ const TopRatedMovies = (props) => {
             <MovieCard movie={movie} key={movie.id} />
           ))}
         </div>
+        <LoadMoreMoviesButton
+          currentPage={currentPage}
+          setCurrentPage={setCurrentPage}
+        />
       </div>
     </div>
   );
