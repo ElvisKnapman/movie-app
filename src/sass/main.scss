@@ -1,7 +1,46 @@
+.top_bar_container {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  padding: 1rem 3rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: rgba(0, 0, 0, 0.9);
+  box-shadow: 0 0 20px 2px rgba(0, 0, 0, 0.5);
+  z-index: 5;
+
+  .app_title {
+    font-size: 3rem;
+    font-weight: 600;
+
+    @media (max-width: $large-phone) {
+      font-size: 2rem;
+    }
+  }
+
+  .powered_by_container {
+    text-align: center;
+    span {
+      display: block;
+      font-size: 1rem;
+      margin-bottom: 0.5rem;
+    }
+    .tmdb_logo {
+      height: auto;
+      max-width: 5.5rem;
+
+      @media (max-width: $large-phone) {
+        max-width: 4rem;
+      }
+    }
+  }
+}
+
 // home page
 .inner_page_container {
   width: 80%;
-  margin: 0 auto;
+  margin: 10rem auto 0;
 
   @media (max-width: $large-tablet) {
     width: 97%;
@@ -204,6 +243,7 @@
 
 .movie_details {
   &_container {
+    padding-top: 7rem;
     background-size: cover;
     background-position: 50%;
     min-height: 100vh;
@@ -221,6 +261,11 @@
     min-height: 60rem;
     border-radius: 4px;
     box-shadow: 0 0 20px 3px rgba(0, 0, 0, 0.4);
+
+    @media (max-width: $large-screen) {
+      width: 95%;
+      text-align: center;
+    }
   }
 
   &_flex_content_container {
@@ -229,16 +274,34 @@
     flex-flow: row nowrap;
     // border: 1px solid red;
     justify-content: space-between;
+
+    @media (max-width: $large-phone) {
+      flex-direction: column;
+      // text-align: center;
+    }
   }
 
   &_flex_content_left {
     // border: 1px solid orange;
-    max-width: 48%;
+    max-width: 58%;
+    min-width: 55%;
+
+    @media (max-width: $large-phone) {
+      max-width: 95%;
+      margin: 0 auto;
+      order: 2;
+    }
   }
 
   &_flex_content_right {
     // border: 1px solid orange;
-    max-width: 48%;
+    max-width: 35%;
+    text-align: right;
+
+    @media (max-width: $large-phone) {
+      order: 1;
+      max-width: 100%;
+    }
   }
 
   &_title {
@@ -277,6 +340,11 @@
   &_poster {
     max-width: 100%;
     width: 100%;
+    height: aut0;
+
+    @media (max-width: $large-screen) {
+      margin-top: 2rem;
+    }
   }
 
   &_grid_container {
@@ -285,6 +353,12 @@
     column-gap: 4rem;
     row-gap: 3rem;
     grid-template-columns: repeat(2, 1fr);
+
+    @media (max-width: $large-tablet) {
+      column-gap: 0;
+      row-gap: 1.2rem;
+      grid-template-columns: 1fr;
+    }
   }
 }
 
