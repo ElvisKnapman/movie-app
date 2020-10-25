@@ -13,7 +13,6 @@ import ComponentContainer from '../ComponentContainer/ComponentContainer';
 const HomePage = (props) => {
   return (
     <div className="inner_page_container">
-      <h1>The Home Page</h1>
       <ComponentContainer>
         <SearchBar />
       </ComponentContainer>
