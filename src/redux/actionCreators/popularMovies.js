@@ -6,20 +6,20 @@ import {
   FETCH_POPULAR_MOVIES_FAILURE,
 } from '../actionTypes';
 
-export const popularMovies = () => async (dispatch) => {
+export const popularMovies = (pageNumber) => async (dispatch) => {
   dispatch({ type: FETCH_POPULAR_MOVIES_START });
 
   try {
     const result = await axios.get(
-      'https://api.themoviedb.org/3/movie/popular?api_key=9bf58527f8639b438523290ccf8faf71'
+      `https://api.themoviedb.org/3/movie/popular?api_key=9bf58527f8639b438523290ccf8faf71&page=${pageNumber}`
     );
-    // array of movies is nested in object (in data.results)
-    setTimeout(() => {
-      dispatch({
-        type: FETCH_POPULAR_MOVIES_SUCCESS,
-        payload: result.data.results,
-      });
-    }, 1000);
+
+    const movies = result.data.results;
+    console.log('popular movies', movies);
+    dispatch({
+      type: FETCH_POPULAR_MOVIES_SUCCESS,
+      payload: movies,
+    });
   } catch (error) {
     dispatch({
       type: FETCH_POPULAR_MOVIES_FAILURE,
