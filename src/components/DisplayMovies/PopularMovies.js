@@ -58,4 +58,6 @@ const mapDispatchToProps = {
   popularMoviesAction,
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(PopularMovies);
+export default React.memo(
+  connect(mapStateToProps, mapDispatchToProps)(PopularMovies)
+);
