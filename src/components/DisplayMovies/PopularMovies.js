@@ -33,11 +33,11 @@ const PopularMovies = (props) => {
       <div className="display_movies_container">
         <h2 className="display_movies_title">Popular Movies</h2>
         <div className="movie_card_container">
-          {popularMoviesList.map((movie) => (
-            <MovieCard movie={movie} key={movie.id} />
-          ))}
+          {popularMoviesList &&
+            popularMoviesList.map((movie, index) => (
+              <MovieCard movie={movie} key={index} />
+            ))}
         </div>
-
         <LoadMoreMoviesButton
           currentPage={currentPage}
           setCurrentPage={setCurrentPage}
