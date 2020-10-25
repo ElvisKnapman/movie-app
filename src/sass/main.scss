@@ -10,6 +10,10 @@
   box-shadow: 0 0 20px 2px rgba(0, 0, 0, 0.5);
   z-index: 5;
 
+  @media (max-width: $small-phone) {
+    padding: 0.8rem 1.8rem;
+  }
+
   .app_title {
     font-size: 3rem;
     font-weight: 600;
@@ -32,6 +36,10 @@
 
       @media (max-width: $large-phone) {
         max-width: 4rem;
+      }
+
+      @media (max-width: $small-phone) {
+        max-width: 3.5rem;
       }
     }
   }
@@ -211,24 +219,6 @@
     border-radius: $border-radius;
     box-shadow: 1px 2px 15px 3px rgba(0, 0, 0, 0.4);
   }
-
-  //   &_rating {
-  //     display: flex;
-  //     justify-content: center;
-  //     align-items: center;
-  //     height: 3.7rem;
-  //     width: 3.7rem;
-  //     position: absolute;
-  //     top: -1.3rem;
-  //     right: -1.3rem;
-  //     background-color: $white;
-  //     color: $light-blue;
-  //     padding: 1rem;
-  //     border-radius: 50%;
-  //     font-size: 1.5rem;
-  //     font-weight: 600;
-  //     box-shadow: 0 1px 10px rgba(0, 0, 0, 0.3);
-  //   }
 }
 
 .display_movies_title {
@@ -309,7 +299,6 @@
     font-weight: 400;
     text-transform: uppercase;
     display: inline-block;
-    margin-right: 2rem;
 
     @media (max-width: $small-phone) {
       font-size: 3rem;
@@ -323,6 +312,10 @@
   &_tagline {
     margin-top: 2rem;
     font-size: 2rem;
+
+    @media (max-width: $small-phone) {
+      font-size: 1.6rem;
+    }
   }
 
   &_badge {
