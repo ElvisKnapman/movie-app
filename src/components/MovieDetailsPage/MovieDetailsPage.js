@@ -3,8 +3,6 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 
 import NoPoster from '../../img/poster_placeholder.png';
-// components
-import ComponentContainer from '../ComponentContainer/ComponentContainer';
 
 export default function TestMoviePage({ match }) {
   const id = Number(match.params.id);
@@ -24,8 +22,7 @@ export default function TestMoviePage({ match }) {
         .then((res) => setMovie(res.data));
     };
     getMovie();
-  }, []);
-  console.log('match', match);
+  }, [id]);
 
   // get the cast by the movie, using the movie id in the url params
   useEffect(() => {
@@ -37,10 +34,21 @@ export default function TestMoviePage({ match }) {
         .then((res) => setMovieCast(res.data));
     };
     getCast();
-  }, []);
+  }, [id]);
 
   useEffect(() => {
     if (movieCast) {
+      // get director from the cast and crew object
+      const findDirector = () => {
+        // find the director in the crew object
+        const list = movieCast.crew.filter((person) => {
+          return person.job === 'Director';
+        });
+        // destructure out of array
+        const [director] = list;
+        setDirector(director.name);
+      };
+
       findDirector();
     }
   }, [movieCast]);
@@ -53,28 +61,6 @@ export default function TestMoviePage({ match }) {
       setHasPoster(movie.poster_path ? true : false);
     }
   }, [movie]);
-
-  // get director from the cast and crew object
-  const findDirector = () => {
-    const list = movieCast.crew.filter((person) => {
-      return person.job === 'Director';
-    });
-    // destructure out of array
-    const [director] = list;
-    console.log('the director', director);
-    setDirector(director.name);
-  };
-
-  // if there is a movie object
-  if (movie) {
-    // divide movie release date up at the hyphens and get the year in the first position
-    console.log('movie object', movie);
-    console.log('movie year', movieYear);
-  }
-
-  if (movieCast) {
-    console.log('the cast', movieCast);
-  }
 
   if (!movie || !movieCast) {
     return (
@@ -91,18 +77,18 @@ export default function TestMoviePage({ match }) {
         backgroundImage: `linear-gradient(to bottom, rgba(0,0,0,.6) 20%, rgba(0,0,0,.05)), url(https://image.tmdb.org/t/p/w1280/${movie.backdrop_path})`,
       }}>
       <div className="movie_details_content_box">
+        <h1 className="movie_details_title">{movie.title}</h1>
+        {/* <span className="movie_details_year">({movieYear})</span> */}
+        {
+          // only show tagline if movie object contains it
+          movie.tagline && (
+            <div className="movie_details_tagline">
+              <em>"{movie.tagline}"</em>
+            </div>
+          )
+        }
         <div className="movie_details_flex_content_container">
           <div className="movie_details_flex_content_left">
-            <h1 className="movie_details_title">{movie.title}</h1>
-            {/* <span className="movie_details_year">({movieYear})</span> */}
-            {
-              // only show tagline if movie object contains it
-              movie.tagline && (
-                <div className="movie_details_tagline">
-                  <em>"{movie.tagline}"</em>
-                </div>
-              )
-            }
             <div className="movie_details_grid_container">
               <div className="movie_details_plot">
                 <div className="movie_details_badge">released</div>
