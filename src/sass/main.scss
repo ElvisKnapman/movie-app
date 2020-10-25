@@ -310,6 +310,10 @@
     text-transform: uppercase;
     display: inline-block;
     margin-right: 2rem;
+
+    @media (max-width: $small-phone) {
+      font-size: 3rem;
+    }
   }
 
   &_year {
