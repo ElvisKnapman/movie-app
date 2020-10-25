@@ -4,7 +4,7 @@ import './sass/index.scss';
 
 // components
 import HomePage from './components/HomePage/HomePage';
-import TestMoviePage from './components/TestMoviePage';
+import MovieDetailsPage from './components/MovieDetailsPage/MovieDetailsPage';
 function App() {
   return (
     <Router>
@@ -12,7 +12,7 @@ function App() {
         <header>
           <Switch>
             <Route exact path="/" component={HomePage} />
-            <Route path="/movies/:id" component={TestMoviePage} />
+            <Route path="/movies/:id" component={MovieDetailsPage} />
           </Switch>
         </header>
       </div>
