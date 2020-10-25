@@ -5,10 +5,8 @@ import { Link } from 'react-router-dom';
 import NoPoster from '../../img/poster_placeholder.png';
 
 const MovieCard = ({ movie }) => {
-  // get movie poster to display or display placeholder
+  // does the movie have a poster image?
   const hasPoster = movie.poster_path ? true : false;
-  // const pathPrefix = "http://image.tmdb.org/t/p/w500/";
-  // const posterPath = movie.poster.path ? movie.poster.path : {NoPoster};
   return (
     <Link to={`/movies/${movie.id}`}>
       <div>
