@@ -206,7 +206,7 @@
   &_container {
     background-size: cover;
     background-position: 50%;
-    height: 100vh;
+    min-height: 100vh;
     overflow: hidden;
   }
   &_content_box {
@@ -274,6 +274,11 @@
     padding: 0 0.3rem;
   }
 
+  &_poster {
+    max-width: 100%;
+    width: 100%;
+  }
+
   &_grid_container {
     margin-top: 3rem;
     display: grid;
@@ -295,6 +300,33 @@
   color: $dark-blue;
   font-size: 2rem;
   margin: 0 auto;
+}
+
+// buttons
+.load_more_movies {
+  &_container {
+    display: block;
+    width: 80%;
+    margin: 5rem auto 3rem;
+    text-align: center;
+  }
+  &_btn {
+    background-color: transparent;
+    border: 2px solid $dark-blue;
+    padding: 2rem;
+    border-radius: $border-radius;
+    color: $white;
+    min-width: 35rem;
+    font-size: 2rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    transition: background-color 200ms ease-in-out;
+
+    &:hover {
+      background-color: $dark-blue;
+      cursor: pointer;
+    }
+  }
 }
 
 ::placeholder {
