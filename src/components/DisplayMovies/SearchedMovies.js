@@ -1,8 +1,5 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
-
-// action creator(s)
-// import { searchMovies as searchMoviesAction } from '../../redux/actionCreators/searchMovies';
 
 // components
 import LoadingSpinner from '../LoadingSpinner/LoadingSpinner';
@@ -10,12 +7,6 @@ import MovieCard from '../MovieCard/MovieCard';
 
 const SearchedMovies = (props) => {
   const { searchedMoviesList, isLoading } = props;
-  // useEffect(() => {
-  //   // fetch movies based on on component mount
-  //   topRatedMoviesAction();
-  // }, [topRatedMoviesAction]);
-
-  console.log('top rated movies', searchedMoviesList);
 
   if (isLoading) {
     return (
@@ -46,9 +37,5 @@ const mapStateToProps = (state) => {
     errorMessage: state.searchMovies.error || null,
   };
 };
-
-// const mapDispatchToProps = {
-//   searchMoviesAction,
-// };
 
 export default connect(mapStateToProps, null)(SearchedMovies);
