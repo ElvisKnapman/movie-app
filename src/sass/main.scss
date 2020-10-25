@@ -190,8 +190,6 @@
 
 // popular movie styles
 .display_movies_container {
-  animation: fadeIn 800ms ease-in;
-
   .movie_card_container {
     max-width: 100%;
     justify-items: center;
@@ -213,6 +211,7 @@
   }
 
   .movie_card_poster {
+    animation: fadeIn 800ms ease-in;
     max-height: 40rem;
     height: auto;
     width: 100%;
