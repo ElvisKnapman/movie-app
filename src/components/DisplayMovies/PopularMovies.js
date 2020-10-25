@@ -1,19 +1,24 @@
-import React, { useEffect, useMemo } from 'react';
+import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 
 // action creator(s)
-import { popularMovies } from '../../redux/actionCreators/popularMovies';
+import { popularMovies as popularMoviesAction } from '../../redux/actionCreators/popularMovies';
 
 // components
 import LoadingSpinner from '../LoadingSpinner/LoadingSpinner';
 import MovieCard from '../MovieCard/MovieCard';
+import LoadMoreMoviesButton from '../LoadMoreMoviesButton/LoadMoreMoviesButton';
 
 const PopularMovies = (props) => {
-  const { popularMovies, popularMoviesList, isLoading } = props;
+  const { popularMoviesAction, popularMoviesList, isLoading } = props;
+
+  // current page of movie results
+  const [currentPage, setCurrentPage] = useState(1);
+
   useEffect(() => {
-    // fetch popular movies on component mount
-    popularMovies();
-  }, [popularMovies]);
+    // fetch popular movies on component mount and when page number changes to load more movies -- pass page number in
+    popularMoviesAction(currentPage);
+  }, [popularMoviesAction, currentPage]);
 
   if (isLoading) {
     return (
@@ -32,6 +37,11 @@ const PopularMovies = (props) => {
             <MovieCard movie={movie} key={movie.id} />
           ))}
         </div>
+
+        <LoadMoreMoviesButton
+          currentPage={currentPage}
+          setCurrentPage={setCurrentPage}
+        />
       </div>
     </div>
   );
@@ -44,5 +54,8 @@ const mapStateToProps = (state) => {
     errorMessage: state.popularMovies.error || null,
   };
 };
+const mapDispatchToProps = {
+  popularMoviesAction,
+};
 
-export default connect(mapStateToProps, { popularMovies })(PopularMovies);
+export default connect(mapStateToProps, mapDispatchToProps)(PopularMovies);
