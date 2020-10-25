@@ -21,24 +21,21 @@ const HomePage = (props) => {
           <PopularMovies />
         </ComponentContainer>
       )}
-
       {props.showTopRated && (
         <ComponentContainer styles={{ minHeight: '100vh' }}>
           <TopRatedMovies />
         </ComponentContainer>
       )}
-
       {props.showTrending && (
         <ComponentContainer styles={{ minHeight: '100vh' }}>
           <TrendingMovies />
         </ComponentContainer>
       )}
-
       {props.showSearched && (
         <ComponentContainer styles={{ minHeight: '100vh' }}>
           <SearchedMovies />
         </ComponentContainer>
-      )}
+      )}{' '}
     </div>
   );
 };
