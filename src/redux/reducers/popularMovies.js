@@ -23,7 +23,8 @@ const popularMovies = (state = initialState, action) => {
       return {
         ...state,
         isLoading: false,
-        movies: action.payload,
+        // keep any movies then add more results to the array
+        movies: [...state.movies, ...action.payload],
       };
 
     case FETCH_POPULAR_MOVIES_FAILURE:
