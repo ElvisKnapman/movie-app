@@ -15,9 +15,10 @@ export const searchMovies = (searchString) => async (dispatch) => {
       `https://api.themoviedb.org/3/search/movie?api_key=9bf58527f8639b438523290ccf8faf71&language=en-US&page=1&include_adult=false&query=${searchString}`
     );
     console.log('the search results for the movie term', result);
+    const movies = result.data.results;
     await dispatch({
       type: SEARCH_MOVIES_SUCCESS,
-      payload: result.data.results,
+      payload: movies,
     });
     // set the visibility to show the searched results
     dispatch({ type: SET_VISIBILITY_FILTER_SEARCHED });
