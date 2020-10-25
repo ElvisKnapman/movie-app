@@ -76,7 +76,7 @@ export default function TestMoviePage({ match }) {
     console.log('the cast', movieCast);
   }
 
-  if (!movie) {
+  if (!movie || !movieCast) {
     return (
       <div>
         <h1>Loading....</h1>
@@ -94,7 +94,7 @@ export default function TestMoviePage({ match }) {
         <div className="movie_details_flex_content_container">
           <div className="movie_details_flex_content_left">
             <h1 className="movie_details_title">{movie.title}</h1>
-            <span className="movie_details_year">({movieYear})</span>
+            {/* <span className="movie_details_year">({movieYear})</span> */}
             {
               // only show tagline if movie object contains it
               movie.tagline && (
@@ -104,6 +104,11 @@ export default function TestMoviePage({ match }) {
               )
             }
             <div className="movie_details_grid_container">
+              <div className="movie_details_plot">
+                <div className="movie_details_badge">released</div>
+                <p className="movie_details_text">{movieYear}</p>
+              </div>
+
               <div className="movie_details_genres">
                 <div className="movie_details_badge">genres</div>
                 <p className="movie_details_text">
@@ -115,9 +120,22 @@ export default function TestMoviePage({ match }) {
                   })}
                 </p>
               </div>
+
               <div className="movie_details_plot">
                 <div className="movie_details_badge">plot</div>
                 <p className="movie_details_text">{movie.overview}</p>
+              </div>
+
+              <div className="movie_details_starring">
+                <div className="movie_details_badge">starring</div>
+                <p className="movie_details_text">
+                  {movieCast.cast.map((person, index) => {
+                    // only put a separating comma if it's not the last person in the list
+                    return index === movieCast.cast.length - 1
+                      ? person.name
+                      : person.name + ', ';
+                  })}
+                </p>
               </div>
               <div className="movie_details_director">
                 <div className="movie_details_badge">director</div>
@@ -127,14 +145,12 @@ export default function TestMoviePage({ match }) {
                 <div className="movie_details_badge">runtime</div>
                 <p className="movie_details_text">{movie.runtime} minutes</p>
               </div>
-              <div className="movie_details_starring">
-                <div className="movie_details_badge">starring</div>
-              </div>
             </div>
           </div>
           <div className="movie_details_flex_content_right">
             <img
               style={{ borderRadius: '4px' }}
+              className="movie_details_poster"
               src={
                 hasPoster
                   ? `http://image.tmdb.org/t/p/w500/${movie.poster_path}`
