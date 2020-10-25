@@ -20,8 +20,6 @@ const TopRatedMovies = (props) => {
     topRatedMoviesAction(currentPage);
   }, [topRatedMoviesAction, currentPage]);
 
-  console.log('top rated movies', topRatedMoviesList);
-
   if (isLoading) {
     return (
       <div>

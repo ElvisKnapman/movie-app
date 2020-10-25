@@ -15,13 +15,7 @@ import {
 
 const SearchBar = (props) => {
   // destructure state from store
-  const {
-    searchMoviesAction,
-    showSearchedMovies,
-    showPopular,
-    showTopRated,
-    showTrending,
-  } = props;
+  const { searchMoviesAction, showPopular, showTopRated, showTrending } = props;
   const [searchText, setSearchText] = useState('');
   const [isHover, setIsHover] = useState(false);
 
@@ -30,18 +24,14 @@ const SearchBar = (props) => {
     if (searchText !== '') {
       // trim leading and trailing whitespace and URI encode the string for the API query
       const encodedString = encodeURI(searchText);
-      console.log('in the useEffect', encodedString);
-      console.log('search bar props', props);
       // dispatch action to fetch movies based on search string
       searchMoviesAction(encodedString);
     }
-  }, [searchText]);
+  }, [searchText, searchMoviesAction]);
 
   const handleChange = (e) => {
     setSearchText(e.target.value);
   };
-  console.log('search text', searchText);
-  console.log('props', true);
 
   return (
     <div className="search_bar_container">

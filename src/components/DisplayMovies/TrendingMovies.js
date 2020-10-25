@@ -15,8 +15,6 @@ const TrendingMovies = (props) => {
     trendingMoviesAction();
   }, [trendingMoviesAction]);
 
-  console.log('trending movies', trendingMoviesList);
-
   if (isLoading) {
     return (
       <div>

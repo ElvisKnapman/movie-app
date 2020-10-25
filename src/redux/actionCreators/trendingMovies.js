@@ -15,7 +15,6 @@ export const trendingMovies = () => async (dispatch) => {
     );
     const movies = result.data.results;
     dispatch({ type: FETCH_TRENDING_MOVIES_SUCCESS, payload: movies });
-    console.log('trending results', result);
   } catch (err) {
     dispatch({
       type: FETCH_TRENDING_MOVIES_FAILURE,

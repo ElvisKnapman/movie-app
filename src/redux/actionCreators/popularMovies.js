@@ -15,7 +15,6 @@ export const popularMovies = (pageNumber) => async (dispatch) => {
     );
 
     const movies = result.data.results;
-    console.log('popular movies', movies);
     dispatch({
       type: FETCH_POPULAR_MOVIES_SUCCESS,
       payload: movies,
