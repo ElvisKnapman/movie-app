@@ -6,12 +6,12 @@ import {
   FETCH_TOP_RATED_MOVIES_FAILURE,
 } from '../actionTypes';
 
-export const topRatedMovies = () => async (dispatch) => {
+export const topRatedMovies = (pageNumber) => async (dispatch) => {
   dispatch({ type: FETCH_TOP_RATED_MOVIES_START });
 
   try {
     const result = await axios.get(
-      'https://api.themoviedb.org/3/movie/top_rated?api_key=9bf58527f8639b438523290ccf8faf71'
+      `https://api.themoviedb.org/3/movie/top_rated?api_key=9bf58527f8639b438523290ccf8faf71&page=${pageNumber}`
     );
     const movies = result.data.results;
     // send the movies to the reducer if successful
