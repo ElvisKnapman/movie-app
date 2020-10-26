@@ -19,14 +19,6 @@ const TopRatedMovies = (props) => {
     topRatedMoviesAction(currentPage);
   }, [topRatedMoviesAction, currentPage]);
 
-  // if (isLoading) {
-  //   return (
-  //     <div>
-  //       <LoadingSpinner />
-  //     </div>
-  //   );
-  // }
-
   return (
     <div>
       <div className="display_movies_container">
@@ -37,13 +29,15 @@ const TopRatedMovies = (props) => {
           ))}
         </div>
         {
-          // show button if not currently loading
+          // show button if not currently loading - else show loading spinner
           !isLoading ? (
             <LoadMoreMoviesButton
               currentPage={currentPage}
               setCurrentPage={setCurrentPage}
             />
-          ) : null
+          ) : (
+            <LoadingSpinner />
+          )
         }
       </div>
     </div>
