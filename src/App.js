@@ -7,6 +7,7 @@ import HomePage from './components/HomePage/HomePage';
 import MovieDetailsPage from './components/MovieDetailsPage/MovieDetailsPage';
 import TopBar from './components/TopBar/TopBar';
 import Footer from './components/Footer/Footer';
+import NotFound from './components/NotFound';
 function App() {
   return (
     <Router>
@@ -18,6 +19,7 @@ function App() {
           <Switch>
             <Route exact path="/" component={HomePage} />
             <Route path="/movies/:id" component={MovieDetailsPage} />
+            <Route component={NotFound} />
           </Switch>
         </main>
         <footer>
