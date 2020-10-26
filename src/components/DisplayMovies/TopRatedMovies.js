@@ -8,7 +8,6 @@ import { topRatedMovies as topRatedMoviesAction } from '../../redux/actionCreato
 import LoadingSpinner from '../LoadingSpinner/LoadingSpinner';
 import MovieCard from '../MovieCard/MovieCard';
 import LoadMoreMoviesButton from '../LoadMoreMoviesButton/LoadMoreMoviesButton';
-
 const TopRatedMovies = (props) => {
   const { topRatedMoviesAction, topRatedMoviesList, isLoading } = props;
 
@@ -20,13 +19,13 @@ const TopRatedMovies = (props) => {
     topRatedMoviesAction(currentPage);
   }, [topRatedMoviesAction, currentPage]);
 
-  if (isLoading) {
-    return (
-      <div>
-        <LoadingSpinner />
-      </div>
-    );
-  }
+  // if (isLoading) {
+  //   return (
+  //     <div>
+  //       <LoadingSpinner />
+  //     </div>
+  //   );
+  // }
 
   return (
     <div>
@@ -37,10 +36,15 @@ const TopRatedMovies = (props) => {
             <MovieCard movie={movie} key={movie.id} />
           ))}
         </div>
-        <LoadMoreMoviesButton
-          currentPage={currentPage}
-          setCurrentPage={setCurrentPage}
-        />
+        {
+          // show button if not currently loading
+          !isLoading ? (
+            <LoadMoreMoviesButton
+              currentPage={currentPage}
+              setCurrentPage={setCurrentPage}
+            />
+          ) : null
+        }
       </div>
     </div>
   );
