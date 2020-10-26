@@ -7,6 +7,7 @@ import NoPoster from '../../img/poster_placeholder.png';
 const MovieCard = ({ movie }) => {
   // does the movie have a poster image?
   const hasPoster = movie.poster_path ? true : false;
+  console.log(1);
   return (
     <Link to={`/movies/${movie.id}`}>
       <div>
