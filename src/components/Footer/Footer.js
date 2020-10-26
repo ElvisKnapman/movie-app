@@ -7,10 +7,15 @@ const Footer = () => {
     <div className="footer_container">
       <p>&copy;{new Date().getFullYear()} Elvis Knapman</p>
       <div className="social_container">
-        <span>View project on </span>
-        <span>
-          <GithubIcon className="social_icon " />
-        </span>
+        <a
+          href="https://github.com/ElvisKnapman/movie-app"
+          target="_blank"
+          rel="noopener noreferrer">
+          <span>View project on </span>
+          <span>
+            <GithubIcon className="social_icon " />
+          </span>
+        </a>
       </div>
     </div>
   );
