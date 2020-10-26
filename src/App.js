@@ -6,6 +6,7 @@ import './sass/index.scss';
 import HomePage from './components/HomePage/HomePage';
 import MovieDetailsPage from './components/MovieDetailsPage/MovieDetailsPage';
 import TopBar from './components/TopBar/TopBar';
+import Footer from './components/Footer/Footer';
 function App() {
   return (
     <Router>
@@ -19,6 +20,9 @@ function App() {
             <Route path="/movies/:id" component={MovieDetailsPage} />
           </Switch>
         </main>
+        <footer>
+          <Footer />
+        </footer>
       </div>
     </Router>
   );
