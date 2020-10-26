@@ -3,16 +3,28 @@ import { connect } from 'react-redux';
 
 // action creator(s)
 import { topRatedMovies as topRatedMoviesAction } from '../../redux/actionCreators/topRatedMovies';
+import { emptyMoviesArray as clearMoviesArrayOnMountAction } from '../../redux/actionCreators/emptyMoviesArray';
 
 // components
 import LoadingSpinner from '../LoadingSpinner/LoadingSpinner';
 import MovieCard from '../MovieCard/MovieCard';
 import LoadMoreMoviesButton from '../LoadMoreMoviesButton/LoadMoreMoviesButton';
+
 const TopRatedMovies = (props) => {
-  const { topRatedMoviesAction, topRatedMoviesList, isLoading } = props;
+  const {
+    topRatedMoviesAction,
+    clearMoviesArrayOnMountAction,
+    topRatedMoviesList,
+    isLoading,
+  } = props;
 
   // current page of movie results
   const [currentPage, setCurrentPage] = useState(1);
+
+  useEffect(() => {
+    // on mount make sure movies array is empty
+    clearMoviesArrayOnMountAction();
+  }, [clearMoviesArrayOnMountAction]);
 
   useEffect(() => {
     // fetch top rated movies on component mount and when page number changes to load more movies -- pass page number in
@@ -54,6 +66,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = {
   topRatedMoviesAction,
+  clearMoviesArrayOnMountAction,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(TopRatedMovies);
