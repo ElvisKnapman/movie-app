@@ -1,5 +1,9 @@
 // action types
 
+// reset the stored movie array to be empty when first loading component
+export const CREATE_FRESH_MOVIE_ARRAY_ON_MOUNT =
+  'CREATE_FRESH_MOVIE_ARRAY_ON_MOUNT';
+
 // for searching specific movies
 export const SEARCH_MOVIES_START = 'SEARCH_MOVIES_START';
 export const SEARCH_MOVIES_SUCCESS = 'SEARCH_MOVIES_SUCCESS';
