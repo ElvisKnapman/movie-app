@@ -12,11 +12,13 @@ function App() {
       <div>
         <header>
           <TopBar />
+        </header>
+        <main>
           <Switch>
             <Route exact path="/" component={HomePage} />
             <Route path="/movies/:id" component={MovieDetailsPage} />
           </Switch>
-        </header>
+        </main>
       </div>
     </Router>
   );
