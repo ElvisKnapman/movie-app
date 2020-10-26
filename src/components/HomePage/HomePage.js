@@ -17,17 +17,17 @@ const HomePage = (props) => {
         <SearchBar />
       </ComponentContainer>
       {props.showPopular && (
-        <ComponentContainer>
+        <ComponentContainer styles={{ minHeight: '100vh' }}>
           <PopularMovies />
         </ComponentContainer>
       )}
       {props.showTopRated && (
-        <ComponentContainer>
+        <ComponentContainer styles={{ minHeight: '100vh' }}>
           <TopRatedMovies />
         </ComponentContainer>
       )}
       {props.showTrending && (
-        <ComponentContainer>
+        <ComponentContainer styles={{ minHeight: '100vh' }}>
           <TrendingMovies />
         </ComponentContainer>
       )}
