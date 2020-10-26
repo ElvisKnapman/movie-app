@@ -17,7 +17,6 @@ const SearchBar = (props) => {
   // destructure state from store
   const { searchMoviesAction, showPopular, showTopRated, showTrending } = props;
   const [searchText, setSearchText] = useState('');
-  const [isHover, setIsHover] = useState(false);
 
   useEffect(() => {
     // prevents action from firing on component mount... must have text in search box
@@ -44,10 +43,7 @@ const SearchBar = (props) => {
           value={searchText}
           placeholder="Search Movies..."
         />
-        <SearchIcon
-          onClick={() => setIsHover(!isHover)}
-          className="search_icon"
-        />
+        <SearchIcon className="search_icon" />
       </div>
       <div className="filter_container">
         <div className="filter_option_container">
