@@ -202,17 +202,17 @@
     }
 
     @media (max-width: $large-tablet) {
-      grid-template-columns: repeat(3, 1fr);
-    }
-
-    @media (max-width: $large-phone) {
       grid-template-columns: repeat(2, 1fr);
     }
+
+    // @media (max-width: $large-phone) {
+    //   grid-template-columns: repeat(2, 1fr);
+    // }
   }
 
   .movie_card_poster {
     animation: fadeIn 800ms ease-in;
-    max-height: 40rem;
+    // max-height: 40rem;
     height: auto;
     width: 100%;
     border-radius: $border-radius;
@@ -237,6 +237,7 @@
     background-position: 50%;
     min-height: 100vh;
     overflow: hidden;
+    padding-bottom: 7rem;
   }
   &_content_box {
     animation: fadeIn 800ms ease-in;
@@ -261,17 +262,14 @@
     width: 100%;
     display: flex;
     flex-flow: row nowrap;
-    // border: 1px solid red;
     justify-content: space-between;
 
     @media (max-width: $large-phone) {
       flex-direction: column;
-      // text-align: center;
     }
   }
 
   &_flex_content_left {
-    // border: 1px solid orange;
     max-width: 58%;
     min-width: 55%;
 
@@ -283,7 +281,6 @@
   }
 
   &_flex_content_right {
-    // border: 1px solid orange;
     max-width: 35%;
     text-align: right;
 
@@ -374,7 +371,7 @@
 .load_more_movies {
   &_container {
     display: block;
-    width: 80%;
+    width: 100%;
     margin: 5rem auto 3rem;
     text-align: center;
   }
@@ -385,6 +382,8 @@
     border-radius: $border-radius;
     color: $white;
     min-width: 20rem;
+    width: 100%;
+    max-width: 50%;
     font-size: 2rem;
     font-weight: 600;
     text-transform: uppercase;
@@ -392,8 +391,8 @@
     transition: background-color 200ms ease-in-out;
     font-family: $font-face;
 
-    @media (max-width: $large-phone) {
-      width: 90%;
+    @media (max-width: $tablet) {
+      max-width: 90%;
     }
 
     @media (max-width: $extra-small-phone) {
