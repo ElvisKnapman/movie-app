@@ -28,6 +28,13 @@ const SearchBar = (props) => {
     }
   }, [searchText, searchMoviesAction]);
 
+  useEffect(() => {
+    // if the app is showing any other set of movies (using visibility filter variables in redux) besides the search movies, reset the search string to empty
+    if (showPopular || showTopRated || showTrending) {
+      setSearchText('');
+    }
+  }, [showPopular, showTopRated, showTrending]);
+
   const handleChange = (e) => {
     setSearchText(e.target.value);
   };
