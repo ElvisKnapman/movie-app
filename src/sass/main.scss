@@ -356,6 +356,10 @@
       grid-template-columns: 1fr;
     }
   }
+
+  &_title_tagline_container {
+    margin-bottom: 5rem;
+  }
 }
 
 // loading spinner
@@ -364,12 +368,6 @@
   width: 100%;
   margin: 2rem;
   text-align: center;
-}
-
-.loading_spinner {
-  color: $dark-blue;
-  font-size: 2rem;
-  margin: 0 auto;
 }
 
 // buttons
