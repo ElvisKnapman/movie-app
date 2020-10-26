@@ -392,6 +392,10 @@
     transition: background-color 200ms ease-in-out;
     font-family: $font-face;
 
+    @media (max-width: $large-phone) {
+      width: 90%;
+    }
+
     @media (max-width: $extra-small-phone) {
       font-size: 1.3rem;
     }
@@ -421,12 +425,29 @@
     display: flex;
     align-items: center;
     margin-left: 2rem;
+    background: transparent;
+    padding: 1rem;
+    border: 2px solid $light-blue;
+    border-radius: $border-radius;
+    transition: background-color 300ms ease-in-out;
+
+    &:hover {
+      background-color: $light-blue;
+    }
+
+    @media (max-width: $small-phone) {
+      font-size: 1.3rem;
+    }
 
     .social_icon {
       font-size: 2.4rem;
       padding: 0;
       margin-left: 1rem;
       vertical-align: top;
+
+      @media (max-width: $small-phone) {
+        font-size: 1.9rem;
+      }
     }
   }
 }
@@ -441,4 +462,11 @@
 
 em {
   font-style: italic;
+}
+
+a,
+a:active,
+a:visited {
+  color: $white;
+  text-decoration: none;
 }
