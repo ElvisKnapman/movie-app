@@ -77,16 +77,17 @@ export default function TestMoviePage({ match }) {
         backgroundImage: `linear-gradient(to bottom, rgba(0,0,0,.6) 20%, rgba(0,0,0,.05)), url(https://image.tmdb.org/t/p/w1280/${movie.backdrop_path})`,
       }}>
       <div className="movie_details_content_box">
-        <h1 className="movie_details_title">{movie.title}</h1>
-        {/* <span className="movie_details_year">({movieYear})</span> */}
-        {
-          // only show tagline if movie object contains it
-          movie.tagline && (
-            <div className="movie_details_tagline">
-              <em>"{movie.tagline}"</em>
-            </div>
-          )
-        }
+        <div className="movie_details_title_tagline_container">
+          <h1 className="movie_details_title">{movie.title}</h1>
+          {
+            // only show tagline if movie object contains it
+            movie.tagline && (
+              <div className="movie_details_tagline">
+                <em>"{movie.tagline}"</em>
+              </div>
+            )
+          }
+        </div>
         <div className="movie_details_flex_content_container">
           <div className="movie_details_flex_content_left">
             <div className="movie_details_grid_container">
