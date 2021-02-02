@@ -1,11 +1,14 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 import TMDBLogo from '../../img/themoviedblogo.svg';
 
 const TopBar = () => {
   return (
     <div className="top_bar_container">
-      <span className="app_title">React Movie DB</span>
+      <span className="app_title">
+        <Link to="/">React Movie DB</Link>
+      </span>
       <div className="powered_by_container">
         <span>Powered By</span>
         <img
