@@ -13,26 +13,15 @@ import {
   showSearchedMovies,
 } from '../../redux/actionCreators/visibilityFilter';
 
+import { debounceSearch } from '../../utils/debounceSearch';
+
 const SearchBar = (props) => {
   // destructure state from store
   const { searchMoviesAction, showPopular, showTopRated, showTrending } = props;
   const [searchText, setSearchText] = useState('');
 
-  const debounceSetupFunction = useCallback(function debounceSearch(fn, delay) {
-    let timer;
-    // take in searchString parameter to pass to callback
-    return function (searchString) {
-      // clear existing timeout
-      clearTimeout(timer);
-      //set and track new timeout
-      timer = setTimeout(() => {
-        fn(searchString);
-      }, delay);
-    };
-  }, []);
-
   const debouncedMovieSearch = useCallback(
-    debounceSetupFunction((searchString) => {
+    debounceSearch((searchString) => {
       // dispatch action to fetch movies based on search string
       searchMoviesAction(searchString);
     }, 600),
