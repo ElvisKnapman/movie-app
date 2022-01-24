@@ -20,7 +20,7 @@ const SearchBar = (props) => {
   const { searchMoviesAction, showPopular, showTopRated, showTrending } = props;
   const [searchText, setSearchText] = useState('');
 
-  const debouncedMovieSearch = useCallback(
+  const searchMovies = useCallback(
     debounceSearch((searchString) => {
       // dispatch action to fetch movies based on search string
       searchMoviesAction(searchString);
@@ -34,9 +34,9 @@ const SearchBar = (props) => {
       // trim leading and trailing whitespace and URI encode the string for the API query
       const encodedString = encodeURI(searchText);
       // pass encoded string to debounce search function
-      debouncedMovieSearch(encodedString);
+      searchMovies(encodedString);
     }
-  }, [searchText, searchMoviesAction, debouncedMovieSearch]);
+  }, [searchText, searchMoviesAction, searchMovies]);
 
   useEffect(() => {
     // if the app is showing any other set of movies (using visibility filter variables in redux) besides the search movies, reset the search string to empty
