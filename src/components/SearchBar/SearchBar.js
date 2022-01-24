@@ -24,7 +24,7 @@ const SearchBar = (props) => {
     debounceSearch((searchString) => {
       // dispatch action to fetch movies based on search string
       searchMoviesAction(searchString);
-    }, 600),
+    }, 400),
     []
   );
 
