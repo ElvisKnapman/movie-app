@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { IoMdSearch as SearchIcon } from 'react-icons/io';
 
 import { connect } from 'react-redux';
@@ -18,15 +18,36 @@ const SearchBar = (props) => {
   const { searchMoviesAction, showPopular, showTopRated, showTrending } = props;
   const [searchText, setSearchText] = useState('');
 
+  const debounceSetupFunction = useCallback(function debounceSearch(fn, delay) {
+    let timer;
+    // take in searchString parameter to pass to callback
+    return function (searchString) {
+      // clear existing timeout
+      clearTimeout(timer);
+      //set and track new timeout
+      timer = setTimeout(() => {
+        fn(searchString);
+      }, delay);
+    };
+  }, []);
+
+  const debouncedMovieSearch = useCallback(
+    debounceSetupFunction((searchString) => {
+      // dispatch action to fetch movies based on search string
+      searchMoviesAction(searchString);
+    }, 600),
+    []
+  );
+
   useEffect(() => {
     // prevents action from firing on component mount... must have text in search box
     if (searchText !== '') {
       // trim leading and trailing whitespace and URI encode the string for the API query
       const encodedString = encodeURI(searchText);
-      // dispatch action to fetch movies based on search string
-      searchMoviesAction(encodedString);
+      // pass encoded string to debounce search function
+      debouncedMovieSearch(encodedString);
     }
-  }, [searchText, searchMoviesAction]);
+  }, [searchText, searchMoviesAction, debouncedMovieSearch]);
 
   useEffect(() => {
     // if the app is showing any other set of movies (using visibility filter variables in redux) besides the search movies, reset the search string to empty
@@ -40,34 +61,34 @@ const SearchBar = (props) => {
   };
 
   return (
-    <div className="search_bar_container">
-      <div className="search_bar">
+    <div className='search_bar_container'>
+      <div className='search_bar'>
         <input
-          className="search_bar_input"
-          name="movie_name"
-          type="text"
+          className='search_bar_input'
+          name='movie_name'
+          type='text'
           onChange={handleChange}
           value={searchText}
-          placeholder="Search Movies..."
+          placeholder='Search Movies...'
         />
-        <SearchIcon className="search_icon" />
+        <SearchIcon className='search_icon' />
       </div>
-      <div className="filter_container">
-        <div className="filter_option_container">
+      <div className='filter_container'>
+        <div className='filter_option_container'>
           <span
             className={`filter_option ${showPopular ? 'active' : ''}`}
             onClick={props.showPopularMovies}>
             Popular
           </span>
         </div>
-        <div className="filter_option_container">
+        <div className='filter_option_container'>
           <span
             className={`filter_option ${showTopRated ? 'active' : ''}`}
             onClick={props.showTopRatedMovies}>
             Top Rated
           </span>
         </div>
-        <div className="filter_option_container">
+        <div className='filter_option_container'>
           <span
             className={`filter_option ${showTrending ? 'active' : ''}`}
             onClick={props.showTrendingMovies}>
