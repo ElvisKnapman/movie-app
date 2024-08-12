@@ -11,7 +11,7 @@ const MovieCard = ({ movie }) => {
 				<img
 					className="movie_card_poster"
 					src={
-						movie.poster.path
+						movie.poster_path
 							? `http://image.tmdb.org/t/p/w500/${movie.poster_path}`
 							: `${NoPoster}`
 					}
