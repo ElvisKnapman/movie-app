@@ -17,7 +17,7 @@ export default function TestMoviePage({ match }) {
 		const getMovie = () => {
 			axios
 				.get(
-					`https://api.themoviedb.org/3/movie/${id}?api_key=${process.env.API_KEY}`
+					`https://api.themoviedb.org/3/movie/${id}?api_key=${process.env.REACT_APP_API_KEY}`
 				)
 				.then(res => setMovie(res.data));
 		};
@@ -29,7 +29,7 @@ export default function TestMoviePage({ match }) {
 		const getCast = () => {
 			axios
 				.get(
-					`https://api.themoviedb.org/3/movie/${id}/credits?api_key=${process.env.API_KEY}`
+					`https://api.themoviedb.org/3/movie/${id}/credits?api_key=${process.env.REACT_APP_API_KEY}`
 				)
 				.then(res => setMovieCast(res.data));
 		};

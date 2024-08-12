@@ -11,7 +11,7 @@ export const topRatedMovies = pageNumber => async dispatch => {
 
 	try {
 		const result = await axios.get(
-			`https://api.themoviedb.org/3/movie/top_rated?api_key=${process.env.API_KEY}&page=${pageNumber}`
+			`https://api.themoviedb.org/3/movie/top_rated?api_key=${process.env.REACT_APP_API_KEY}&page=${pageNumber}`
 		);
 		const movies = result.data.results;
 		// send the movies to the reducer if successful
