@@ -11,7 +11,7 @@ export const trendingMovies = () => async dispatch => {
 
 	try {
 		const result = await axios.get(
-			'https://api.themoviedb.org/3/trending/movie/day?api_key=${process.env.API_KEY}'
+			`https://api.themoviedb.org/3/trending/movie/day?api_key=${process.env.REACT_APP_API_KEY}`
 		);
 		const movies = result.data.results;
 		dispatch({ type: FETCH_TRENDING_MOVIES_SUCCESS, payload: movies });
